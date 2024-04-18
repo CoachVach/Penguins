@@ -1,12 +1,16 @@
 import pygame
 
+from App.Classes.Map.map import Map
 from App.Constants.colors import *
 from App.Constants.text import *
+from App.Interface.Images.map_movement import *
 
 pygame.init()
 
 screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 pygame.display.set_caption(GAME_TITLE)
+
+map = Map(screen=screen)
 
 running = True
 while running:
@@ -28,6 +32,10 @@ while running:
 
     if keys[pygame.K_ESCAPE]: 
         running = False
+    else:
+        move_map_with_keys(keys, map.interface)
+
+    map.interface.draw()
 
     pygame.display.flip()
 

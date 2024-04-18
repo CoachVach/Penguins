@@ -8,6 +8,6 @@ class Map:
         self.width = width
         self.height = height
 
-        self.matrix = Matrix()
+        self.matrix = Matrix(self.width, self.height)
 
         self.interface = MapInterface(self.matrix, screen)
