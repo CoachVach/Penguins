@@ -1,0 +1,2 @@
+EMPTY = 0
+ROCK = 1

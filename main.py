@@ -1,7 +1,7 @@
 import pygame
 
-from App.Constants.colors import BLACK
-from App.Constants.text import GAME_TITLE
+from App.Constants.colors import *
+from App.Constants.text import *
 
 pygame.init()
 
