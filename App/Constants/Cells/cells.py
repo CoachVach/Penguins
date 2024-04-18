@@ -1,2 +1,3 @@
-EMPTY = 0
-ROCK = 1
+EMPTY = 1
+ROCK = 2
+WATER = 0
