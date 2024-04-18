@@ -1,6 +1,7 @@
 import pygame
 
 from App.Classes.Map.map import Map
+from App.Classes.Panel.panel import Panel
 from App.Constants.colors import *
 from App.Constants.text import *
 from App.Classes.Map.map_movement import *
@@ -11,6 +12,7 @@ screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 pygame.display.set_caption(GAME_TITLE)
 
 map = Map(screen=screen)
+panel = Panel(screen=screen, map=map)
 
 running = True
 while running:
@@ -40,6 +42,7 @@ while running:
         map.move(keys, mouse_pos, button_clicked, button_released)
 
     map.interface.draw()
+    panel.draw(mouse_pos, button_clicked)
 
     pygame.display.flip()
 

@@ -1,6 +1,7 @@
 import pygame
 
 from App.Constants.Cells.interface import *
+from App.Constants.panel import *
 
 def transform_img(img, width, height):
     image = pygame.image.load(img)
@@ -11,3 +12,6 @@ def transform_img(img, width, height):
 
 def cell_img(img):
     return transform_img(img, CELL_WIDTH, CELL_HEIGHT)
+
+def panel_button_img(img):
+    return transform_img(img, PANEL_BUTTON_WIDTH, PANEL_BUTTON_HEIGHT)

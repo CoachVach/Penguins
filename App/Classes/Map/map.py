@@ -1,3 +1,4 @@
+from App.Classes.Map.map_building import MapBuilder
 from App.Classes.Map.map_interface import MapInterface
 from App.Classes.Map.map_movement import MapMovement
 from App.Classes.Map.matrix import Matrix
@@ -14,6 +15,8 @@ class Map:
         self.interface = MapInterface(self.matrix, screen)
 
         self.movement = MapMovement(map=self.interface)
+
+        self.builder = MapBuilder(matrix = self.matrix)
 
     def move(self, keys, mouse_pos, button_clicked, button_released):
         self.movement.move(keys, mouse_pos, button_clicked, button_released)
