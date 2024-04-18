@@ -8,3 +8,5 @@ PANEL_WIDTH = PANEL_BUTTON_WIDTH + 10
 BUILD_BUTTON_IMG = "Images/Buttons/Panel/build.png"
 
 IGLOO_BUTTON_IMG = "Images/Buttons/Panel/Build/igloo.png"
+ROAD_BUTTON_IMG = "Images/Buttons/Panel/Build/road.png"
+BRIDGE_BUTTON_IMG = "Images/Buttons/Panel/Build/bridge.png"

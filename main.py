@@ -41,7 +41,7 @@ while running:
     else:
         map.move(keys, mouse_pos, button_clicked, button_released)
 
-    map.interface.draw()
+    map.draw(mouse_pos, button_clicked, panel.mouse_in_panel(mouse_pos))
     panel.draw(mouse_pos, button_clicked)
 
     pygame.display.flip()

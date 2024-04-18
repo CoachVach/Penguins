@@ -1,5 +1,7 @@
+import pygame
 from App.Constants.Cells.cells import *
 from App.Constants.Cells.interface import *
+from App.Constants.colors import *
 from App.Interface.Images.image_transformer import cell_img
 
 
@@ -13,14 +15,20 @@ class CellDrawer:
         self.empty_img = cell_img(EMPTY_IMG)
         self.rock_img = cell_img(ROCK_IMG)
         self.water_img = cell_img(WATER_IMG)
+        self.road_img = cell_img(ROAD_IMG)
+        self.bridge_img = cell_img(BRIDGE_IMG)
     
     def draw(self, cell, j, i, x, y):
-        if cell == EMPTY:
+        if cell == EMPTY or cell == IGLOO:
             self.draw_empty(j, i, x, y)
         elif cell == ROCK:
             self.draw_rock(j, i, x, y)
         elif cell == WATER:
             self.draw_water(j, i, x, y)
+        elif cell == ROAD:
+            self.draw_road(j, i, x, y)
+        elif cell == BRIDGE:
+            self.draw_bridge(j, i, x, y)
 
     def draw_empty(self, j, i, x, y):
         self.screen.blit(self.empty_img, (i*self.width - x*self.width, j*self.height - y*self.height))
@@ -31,3 +39,16 @@ class CellDrawer:
 
     def draw_water(self, j, i, x, y):
         self.screen.blit(self.water_img, (i*self.width - x*self.width, j*self.height - y*self.height))
+
+    def draw_road(self, j, i, x, y):
+        self.screen.blit(self.road_img, (i*self.width - x*self.width, j*self.height - y*self.height))
+
+    def draw_bridge(self, j, i, x, y):
+        self.draw_water(j, i, x, y)
+        self.screen.blit(self.bridge_img, (i*self.width - x*self.width, j*self.height - y*self.height))
+
+    def draw_selected(self, j, i, x, y):
+        s = pygame.Surface((self.width, self.height))
+        s.set_alpha(100)
+        s.fill(GREEN)
+        self.screen.blit(s, (i*self.width - x*self.width, j*self.height - y*self.height))

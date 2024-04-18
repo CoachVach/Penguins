@@ -16,8 +16,8 @@ class BuildPanel:
         self.active = active
         self.builder.activate(active)
         if active == False:
-            for btn in self.building_btns:
-                btn.active = False
+            self.deactivate_all()
+            self.builder.selected = None
 
     def init_building_btns(self):
         self.building_btns = []
@@ -25,7 +25,7 @@ class BuildPanel:
         i=0
 
         for building in self.builder.buildings:
-            self.building_btns.append(BuildingButton(self.screen, 5 + self.rect.x + PANEL_BUTTON_WIDTH*i, self.rect.y+5, building.button_img))
+            self.building_btns.append(BuildingButton(self.screen, 5 + self.rect.x + (PANEL_BUTTON_WIDTH+10)*i, self.rect.y+5, building))
             i += 1
 
     def init_panel_rect(self):
@@ -38,8 +38,19 @@ class BuildPanel:
         self.rect = pygame.Rect(0, self.y, rect_w, PANEL_HEIGHT)
         self.rect.centerx = screen_width // 2
 
+    def deactivate_all(self):
+        for btn in self.building_btns:
+            btn.active = False
+
     def draw(self, mouse_pos, button_clicked):
         if self.active:
             pygame.draw.rect(self.screen, BROWN, self.rect)
             for btn in self.building_btns:
-                btn.draw(mouse_pos, button_clicked)
+                if btn.draw(mouse_pos, button_clicked):
+                    if btn.active:
+                        self.deactivate_all()
+                        btn.active = True                    
+                        self.builder.selected = btn.factory
+                    else:
+                        self.builder.selected = None
+

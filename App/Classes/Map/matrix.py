@@ -10,7 +10,6 @@ class Matrix:
         self.river_path_finder = None
         self.matrix = self.generate_initial_matrix()
 
-
     def generate_initial_matrix(self):
         matrix = [[EMPTY for _ in range(self.height)] for _ in range(self.width)]
 
