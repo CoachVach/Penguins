@@ -3,7 +3,7 @@ import pygame
 from App.Classes.Map.map import Map
 from App.Constants.colors import *
 from App.Constants.text import *
-from App.Interface.Images.map_movement import *
+from App.Classes.Map.map_movement import *
 
 pygame.init()
 
@@ -16,12 +16,16 @@ running = True
 while running:
     screen.fill(BLACK) 
     button_clicked = False
+    button_released = False
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:  
                 button_clicked = True
+        elif event.type == pygame.MOUSEBUTTONUP:
+            if event.button == 1:  
+                button_released = True
         elif event.type == pygame.KEYUP:
             pass
         elif event.type == pygame.KEYDOWN:
@@ -33,7 +37,7 @@ while running:
     if keys[pygame.K_ESCAPE]: 
         running = False
     else:
-        move_map_with_keys(keys, map.interface)
+        map.move(keys, mouse_pos, button_clicked, button_released)
 
     map.interface.draw()
 
