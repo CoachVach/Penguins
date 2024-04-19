@@ -41,14 +41,27 @@ class MapInterface:
             if selected_building == None:
                 self.cell_drawer.draw_selected(mouse_j, mouse_i, self.x, self.y)
             else:
-                if button_clicked:
-                    builder.create(mouse_j, mouse_i, self.buildings)
+                if selected_building.can_build(mouse_j, mouse_i, self.matrix):
+                    if button_clicked:
+                        builder.create(mouse_j, mouse_i, self.buildings)
+                    else:
+                        self.building_drawer.draw_incomplete_building(mouse_j, mouse_i, self.x, self.y, selected_building)
                 else:
-                    self.building_drawer.draw_incomplete_building(mouse_j, mouse_i, self.x, self.y, selected_building)
+                    self.building_drawer.draw_unbuildable_building(mouse_j, mouse_i, self.x, self.y, selected_building)
 
     def draw_buildings(self):
         self.draw_iglooes()
+        self.draw_barrels()
+        self.draw_storages()
 
     def draw_iglooes(self):
         for igloo in self.buildings.iglooes:
             igloo.draw(self.screen, self.x, self.y)
+
+    def draw_barrels(self):
+        for barrel in self.buildings.barrels:
+            barrel.draw(self.screen, self.x, self.y)
+
+    def draw_storages(self):
+        for storage in self.buildings.storages:
+            storage.draw(self.screen, self.x, self.y)

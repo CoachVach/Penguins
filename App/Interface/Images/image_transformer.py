@@ -20,5 +20,8 @@ def panel_button_img(img):
 def incomplete_building_img(img, width, height):
     return transform_img(img, width, height, 180)
 
+def unbuildable_building_img(img, width, height):
+    return transform_img(img, width, height, 50)
+
 def building_img(img, width, height):
     return transform_img(img, width, height)

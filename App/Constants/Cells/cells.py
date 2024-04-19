@@ -1,6 +1,10 @@
 EMPTY = 1
+
 ROCK = 2
 WATER = 0
 ROAD = 3
 BRIDGE = 4
+
 IGLOO = 5
+STORAGE = 6
+BARREL = 7

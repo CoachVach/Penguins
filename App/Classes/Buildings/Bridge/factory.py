@@ -1,5 +1,5 @@
 from App.Classes.Factory.factory import Factory
-from App.Constants.Cells.cells import BRIDGE
+from App.Constants.Cells.cells import BRIDGE, WATER
 from App.Constants.panel import BRIDGE_BUTTON_IMG
 
 class BridgeFactory(Factory):
@@ -8,3 +8,6 @@ class BridgeFactory(Factory):
 
     def create(self, j, i, matrix, buildings):
         matrix.matrix[j][i] = BRIDGE
+
+    def can_build(self, j, i, matrix):
+        return (matrix.matrix[j][i] == WATER)

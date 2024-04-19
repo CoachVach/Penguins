@@ -2,7 +2,7 @@ import pygame
 from App.Constants.Cells.cells import *
 from App.Constants.Cells.interface import *
 from App.Constants.colors import *
-from App.Interface.Images.image_transformer import cell_img, incomplete_building_img
+from App.Interface.Images.image_transformer import *
 
 class BuildingDrawer:
     def __init__(self, screen):
@@ -14,4 +14,8 @@ class BuildingDrawer:
     
     def draw_incomplete_building(self, j, i, x, y, building):
         img = incomplete_building_img(building.img, building.width*CELL_WIDTH, building.height*CELL_HEIGHT)
+        self.screen.blit(img, (i*CELL_WIDTH - x*CELL_WIDTH, j*CELL_HEIGHT - y*CELL_HEIGHT))
+
+    def draw_unbuildable_building(self, j, i, x, y, building):
+        img = unbuildable_building_img(building.img, building.width*CELL_WIDTH, building.height*CELL_HEIGHT)
         self.screen.blit(img, (i*CELL_WIDTH - x*CELL_WIDTH, j*CELL_HEIGHT - y*CELL_HEIGHT))

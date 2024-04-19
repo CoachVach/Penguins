@@ -19,7 +19,7 @@ class CellDrawer:
         self.bridge_img = cell_img(BRIDGE_IMG)
     
     def draw(self, cell, j, i, x, y):
-        if cell == EMPTY or cell == IGLOO:
+        if cell == EMPTY or cell == IGLOO or cell == BARREL or cell == STORAGE:
             self.draw_empty(j, i, x, y)
         elif cell == ROCK:
             self.draw_rock(j, i, x, y)
