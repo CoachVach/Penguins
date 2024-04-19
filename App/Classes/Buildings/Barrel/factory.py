@@ -2,7 +2,7 @@
 from App.Classes.Buildings.Barrel.barrel import Barrel
 from App.Classes.Factory.factory import Factory
 from App.Constants.Cells.cells import BARREL
-from App.Constants.buildings import BARREL_IMG
+from App.Constants.Buildings.images import BARREL_IMG
 from App.Constants.orientation import HORIZONTAL
 from App.Constants.panel import BARREL_BUTTON_IMG
 

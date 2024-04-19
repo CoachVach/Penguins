@@ -41,6 +41,9 @@ while running:
     else:
         map.move(keys, mouse_pos, button_clicked, button_released)
 
+    if keys[pygame.K_SPACE]:
+        map.penguin_commander.send_penguin((10, 10)) 
+
     map.draw(mouse_pos, button_clicked, panel.mouse_in_panel(mouse_pos))
     panel.draw(mouse_pos, button_clicked)
 

@@ -26,7 +26,7 @@ class Matrix:
         return matrix
     
     def generate_river(self, matrix):
-        self.river_path_finder = PathFinder(matrix)
+        self.river_path_finder = PathFinder(matrix, diagonal_movement = True)
 
         start_j = random.randint(2, self.height-3)
         mid_j = random.randint(2, self.height-3)

@@ -1,7 +1,7 @@
 from App.Classes.Buildings.Igloo.igloo import Igloo
 from App.Classes.Factory.factory import Factory
 from App.Constants.Cells.cells import IGLOO
-from App.Constants.buildings import IGLOO_IMG
+from App.Constants.Buildings.images import IGLOO_IMG
 from App.Constants.orientation import HORIZONTAL
 from App.Constants.panel import IGLOO_BUTTON_IMG
 
