@@ -46,6 +46,6 @@ while running:
 
     pygame.display.flip()
 
-    pygame.time.delay(30)
+    pygame.time.delay(100)
 
 pygame.quit()

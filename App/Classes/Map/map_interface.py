@@ -18,12 +18,16 @@ class MapInterface:
         self.x = -5
         self.y = -5
 
+        self.counter = 0
+
     def draw(self, mouse_pos, button_clicked, builder, mouse_in_panel):
         self.draw_cells()
 
         self.draw_buildings()
 
         self.draw_when_builder(mouse_pos, button_clicked, mouse_in_panel, builder)
+
+        self.increment_counter()
 
     def draw_cells(self):
         for i, row in enumerate(self.matrix.matrix):
@@ -56,7 +60,7 @@ class MapInterface:
 
     def draw_iglooes(self):
         for igloo in self.buildings.iglooes:
-            igloo.draw(self.screen, self.x, self.y)
+            igloo.draw(self.screen, self.x, self.y, self.counter)
 
     def draw_barrels(self):
         for barrel in self.buildings.barrels:
@@ -65,3 +69,8 @@ class MapInterface:
     def draw_storages(self):
         for storage in self.buildings.storages:
             storage.draw(self.screen, self.x, self.y)
+
+    def increment_counter(self):
+        self.counter += 1
+        if self.counter >= 1000:
+            self.counter = 0

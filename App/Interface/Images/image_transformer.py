@@ -3,13 +3,15 @@ import pygame
 from App.Constants.Cells.interface import *
 from App.Constants.panel import *
 
-def transform_img(img, width, height, transparency=255, horizontal=True):
+def transform_img(img, width, height, transparency=255, horizontal=True, flip=False):
     image = pygame.image.load(img)
     alpha_img = image.convert_alpha()
     scaled_img = pygame.transform.scale(alpha_img, (width, height)).convert_alpha()
     scaled_img.set_alpha(transparency)
     if not horizontal:
         scaled_img = pygame.transform.rotate(scaled_img, 90)
+    if flip:
+        scaled_img = pygame.transform.flip(scaled_img, True, False)
 
     return scaled_img
 
@@ -27,3 +29,10 @@ def unbuildable_building_img(img, width, height, horizontal=True):
 
 def building_img(img, width, height, horizontal=True):
     return transform_img(img, width, height, horizontal=horizontal)
+
+def penguin_imgs(imgs, flip=False):
+    final_imgs = []
+    for img in imgs:
+        final_imgs.append(transform_img(img, CELL_WIDTH, CELL_HEIGHT, flip=flip))
+
+    return final_imgs
