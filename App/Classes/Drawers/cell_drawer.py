@@ -17,6 +17,7 @@ class CellDrawer:
         self.water_img = cell_img(WATER_IMG)
         self.road_img = cell_img(ROAD_IMG)
         self.bridge_img = cell_img(BRIDGE_IMG)
+        self.soil_img = cell_img(SOIL_IMG)
     
     def draw(self, cell, j, i, x, y):
         if cell == EMPTY or cell == IGLOO or cell == BARREL or cell == STORAGE:
@@ -27,8 +28,12 @@ class CellDrawer:
             self.draw_water(j, i, x, y)
         elif cell == ROAD:
             self.draw_road(j, i, x, y)
-        elif cell == BRIDGE:
-            self.draw_bridge(j, i, x, y)
+        elif cell == HORIZONTAL_BRIDGE:
+            self.draw_bridge(j, i, x, y, True)
+        elif cell == VERTICAL_BRIDGE:
+            self.draw_bridge(j, i, x, y, False)
+        elif cell == SOIL:
+            self.draw_soil(j, i, x, y)
 
     def draw_empty(self, j, i, x, y):
         self.screen.blit(self.empty_img, (i*self.width - x*self.width, j*self.height - y*self.height))
@@ -43,10 +48,17 @@ class CellDrawer:
     def draw_road(self, j, i, x, y):
         self.screen.blit(self.road_img, (i*self.width - x*self.width, j*self.height - y*self.height))
 
-    def draw_bridge(self, j, i, x, y):
+    def draw_bridge(self, j, i, x, y, horizontal):
         self.draw_water(j, i, x, y)
-        self.screen.blit(self.bridge_img, (i*self.width - x*self.width, j*self.height - y*self.height))
+        if not horizontal:
+            img = pygame.transform.rotate(self.bridge_img, 90)
+        else:
+            img = self.bridge_img
+        self.screen.blit(img, (i*self.width - x*self.width, j*self.height - y*self.height))
 
+    def draw_soil(self, j, i, x, y):
+        self.screen.blit(self.soil_img, (i*self.width - x*self.width, j*self.height - y*self.height))
+    
     def draw_selected(self, j, i, x, y):
         s = pygame.Surface((self.width, self.height))
         s.set_alpha(100)

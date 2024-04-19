@@ -2,6 +2,7 @@ import pygame
 from App.Constants.Cells.cells import *
 from App.Constants.Cells.interface import *
 from App.Constants.colors import *
+from App.Constants.orientation import HORIZONTAL
 from App.Interface.Images.image_transformer import *
 
 class BuildingDrawer:
@@ -13,9 +14,9 @@ class BuildingDrawer:
         self.water_img = cell_img(WATER_IMG)
     
     def draw_incomplete_building(self, j, i, x, y, building):
-        img = incomplete_building_img(building.img, building.width*CELL_WIDTH, building.height*CELL_HEIGHT)
+        img = incomplete_building_img(building.img, building.width*CELL_WIDTH, building.height*CELL_HEIGHT, building.orientation == HORIZONTAL)
         self.screen.blit(img, (i*CELL_WIDTH - x*CELL_WIDTH, j*CELL_HEIGHT - y*CELL_HEIGHT))
 
     def draw_unbuildable_building(self, j, i, x, y, building):
-        img = unbuildable_building_img(building.img, building.width*CELL_WIDTH, building.height*CELL_HEIGHT)
+        img = unbuildable_building_img(building.img, building.width*CELL_WIDTH, building.height*CELL_HEIGHT, building.orientation == HORIZONTAL)
         self.screen.blit(img, (i*CELL_WIDTH - x*CELL_WIDTH, j*CELL_HEIGHT - y*CELL_HEIGHT))

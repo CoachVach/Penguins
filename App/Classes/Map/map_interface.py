@@ -37,7 +37,7 @@ class MapInterface:
         mouse_j = (mouse_y + self.y*CELL_HEIGHT) // CELL_HEIGHT
         
         selected_building = builder.selected
-        if not mouse_in_panel and (mouse_i >= 0 and mouse_i < MAP_WIDTH) and (mouse_j >= 0 and mouse_j < MAP_HEIGHT):
+        if (not mouse_in_panel) and (mouse_i >= 0 and mouse_i < MAP_WIDTH) and (mouse_j >= 0 and mouse_j < MAP_HEIGHT):
             if selected_building == None:
                 self.cell_drawer.draw_selected(mouse_j, mouse_i, self.x, self.y)
             else:

@@ -30,5 +30,5 @@ class Panel:
     def mouse_in_panel(self, mouse_pos):
         mouse_in_main = self.rect.collidepoint(mouse_pos)
 
-        mouse_in_build = self.build_panel.active and self.build_panel.rect.collidepoint(mouse_pos)
+        mouse_in_build = self.build_panel.active and self.build_panel.mouse_in_panel(mouse_pos)
         return mouse_in_main or mouse_in_build
