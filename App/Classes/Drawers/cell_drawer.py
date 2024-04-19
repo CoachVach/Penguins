@@ -4,7 +4,6 @@ from App.Constants.Cells.interface import *
 from App.Constants.colors import *
 from App.Interface.Images.image_transformer import cell_img
 
-
 class CellDrawer:
     def __init__(self, screen):
         self.screen = screen
@@ -32,7 +31,7 @@ class CellDrawer:
             self.draw_bridge(j, i, x, y, True)
         elif cell == VERTICAL_BRIDGE:
             self.draw_bridge(j, i, x, y, False)
-        elif cell == SOIL:
+        elif cell == SOIL or cell == PLANT:
             self.draw_soil(j, i, x, y)
 
     def draw_empty(self, j, i, x, y):

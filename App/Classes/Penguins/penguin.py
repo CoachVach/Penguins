@@ -6,10 +6,10 @@ from App.Constants.Penguins.Images.movement import *
 from App.Interface.Images.image_transformer import penguin_imgs
 
 class Penguin:
-    def __init__(self):
+    def __init__(self, i= 10, j= 10):
 
-        self.i = 10
-        self.j = 10
+        self.i = i
+        self.j = j
 
         self.walking_up_imgs = penguin_imgs(PENGUIN_WALK_UP_IMGS)
         self.walking_down_imgs = penguin_imgs(PENGUIN_WALK_DOWN_IMGS)
@@ -17,7 +17,7 @@ class Penguin:
         self.walking_left_imgs = penguin_imgs(PENGUIN_WALK_SIDE_IMGS, True)
         self.standing_img = self.walking_down_imgs[0]
 
-        self.facing = LEFT
+        self.facing = STANDING
 
         self.vel = CELL_WIDTH
 

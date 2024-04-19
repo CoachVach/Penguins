@@ -1,4 +1,3 @@
-import pygame
 from App.Classes.Drawers.building_drawer import BuildingDrawer
 from App.Classes.Drawers.cell_drawer import CellDrawer
 from App.Constants.Cells.interface import *
@@ -59,6 +58,7 @@ class MapInterface:
         self.draw_iglooes()
         self.draw_barrels()
         self.draw_storages()
+        self.draw_plants()
 
     def draw_iglooes(self):
         for igloo in self.buildings.iglooes:
@@ -71,6 +71,10 @@ class MapInterface:
     def draw_storages(self):
         for storage in self.buildings.storages:
             storage.draw(self.screen, self.x, self.y)
+
+    def draw_plants(self):
+        for plant in self.buildings.plants:
+            plant.draw(self.screen, self.x, self.y)
 
     def draw_penguins(self, penguins):
         for penguin in penguins:

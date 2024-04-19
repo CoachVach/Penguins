@@ -30,6 +30,3 @@ class PenguinCommander:
         self.path_finder.update_matrix(self.road_matrix)
         penguin = self.penguins[0]
         penguin.determine_path(self.path_finder.create_path((penguin.i, penguin.j), end))
-
-
-

@@ -1,0 +1,1 @@
+CARROT_IMG = "Images/Plants/carrot.png"

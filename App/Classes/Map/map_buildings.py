@@ -3,4 +3,5 @@ class MapBuildings():
         self.iglooes = []
         self.barrels = []
         self.storages = []
+        self.plants = []
         
