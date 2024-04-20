@@ -3,6 +3,7 @@ import pygame
 from App.Classes.Map.map import Map
 from App.Classes.Panel.panel import Panel
 from App.Constants.colors import *
+from App.Constants.interface import DELAY
 from App.Constants.text import *
 from App.Classes.Map.map_movement import *
 
@@ -46,6 +47,6 @@ while running:
 
     pygame.display.flip()
 
-    pygame.time.delay(75)
+    pygame.time.delay(DELAY)
 
 pygame.quit()
