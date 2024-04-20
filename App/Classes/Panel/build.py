@@ -21,6 +21,7 @@ class BuildPanel:
         if active == False:
             self.deactivate_all()
             self.builder.selected = None
+            self.rotation_panel. active = False
 
     def init_building_btns(self):
         self.building_btns = []

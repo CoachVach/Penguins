@@ -6,7 +6,6 @@ from App.Classes.Buildings.Road.factory import RoadFactory
 from App.Classes.Buildings.Soil.factory import SoilFactory
 from App.Classes.Buildings.Storage.factory import StorageFactory
 
-
 class MapBuilder:
     def __init__(self, matrix):
         self.matrix = matrix

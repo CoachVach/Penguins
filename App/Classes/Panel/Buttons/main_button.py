@@ -9,3 +9,6 @@ class MainPanelButton(PanelButton):
     def draw(self, mouse_pos, button_clicked):
         if super().draw(mouse_pos, button_clicked):
             self.panel.activate(self.active)
+
+            return True
+        return False

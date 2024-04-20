@@ -22,10 +22,14 @@ class Panel:
     def draw(self, mouse_pos, button_clicked):
         pygame.draw.rect(self.screen, BROWN, self.rect)
 
-        self.build_btn.draw(mouse_pos, button_clicked)
+        if self.build_btn.draw(mouse_pos, button_clicked):
+            self.plant_panel.activate(False)
+            self.plant_btn.active = False
         self.build_panel.draw(mouse_pos, button_clicked)
 
-        self.plant_btn.draw(mouse_pos, button_clicked)
+        if self.plant_btn.draw(mouse_pos, button_clicked):
+            self.build_panel.activate(False)
+            self.build_btn.active = False
         self.plant_panel.draw(mouse_pos, button_clicked)
 
     def panel_rect(self):

@@ -16,7 +16,7 @@ class RotationPanel:
 
     def panel_rect(self):
         screen_width, screen_height = self.screen.get_size()
-        self.rect = pygame.Rect(0, screen_height - PANEL_HEIGHT*3, PANEL_WIDTH, PANEL_HEIGHT)
+        self.rect = pygame.Rect(0, screen_height - PANEL_HEIGHT*3, PANEL_WIDTH/2, PANEL_HEIGHT)
         self.rect.centerx = screen_width // 2
 
     def mouse_in_panel(self, mouse_pos):
