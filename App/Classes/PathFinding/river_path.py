@@ -32,5 +32,6 @@ class PathFinder:
 		self.path,_ = self.finder.find_path(start,end,self.grid)
 		self.grid.cleanup()
 
+		print(self.path)
 		return self.path
 		

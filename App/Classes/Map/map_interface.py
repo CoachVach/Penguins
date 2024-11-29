@@ -22,19 +22,21 @@ class MapInterface:
 
         self.info_panel = InfoPanel(screen)
 
-    def draw(self, mouse_pos, button_clicked, builder, penguins, mouse_in_panel):
+    def draw(self, mouse_pos, button_clicked, builder, penguins, mouse_in_panel, selected_building):
         self.draw_cells()
 
         self.draw_buildings()
 
-        if not builder.active and button_clicked and not mouse_in_panel:
-            self.handle_building_selection(mouse_pos)
+        self.info_panel.set_building(selected_building)
 
         self.draw_when_builder(mouse_pos, button_clicked, mouse_in_panel, builder)
 
         self.draw_penguins(penguins)
 
         self.info_panel.draw()
+        if self.info_panel.selected_building:
+            self.info_panel.selected_building.draw_door(self.screen, self.x, self.y)
+            
 
         self.increment_counter()
 
@@ -127,4 +129,4 @@ class MapInterface:
                 selected_building = plant
                 break
         
-        self.info_panel.set_building(selected_building)
+        return selected_building

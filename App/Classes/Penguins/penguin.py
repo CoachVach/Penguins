@@ -47,11 +47,7 @@ class Penguin:
             imgs = [self.standing_img]
 
         img = imgs[counter % len(imgs)]
-
-        if self.facing != STANDING:
-            pos = self.position(x, y, counter)
-        else:
-            pos = (self.i*CELL_WIDTH - x*CELL_WIDTH, self.j*CELL_HEIGHT - y*CELL_HEIGHT)
+        pos = self.position(x, y, counter)
 
         screen.blit(img, pos)
 
@@ -84,6 +80,7 @@ class Penguin:
 
     def determine_path(self, path):
         self.path = path
+        self.determine_direction()
 
     def determine_direction(self):
         if len(self.path) >= 1:

@@ -1,6 +1,6 @@
 import pygame
 from App.Constants.Cells.interface import *
-from App.Constants.colors import GREEN
+from App.Constants.colors import BLUE, GREEN, RED
 from App.Interface.Images.image_transformer import building_img
 
 class Building:
@@ -15,3 +15,9 @@ class Building:
 
     def draw(self, screen, x, y):
         screen.blit(self.img, (self.i*CELL_WIDTH - x*CELL_WIDTH, self.j*CELL_HEIGHT - y*CELL_HEIGHT))
+
+    def draw_door(self, screen, x, y):
+        s = pygame.Surface((CELL_WIDTH,CELL_HEIGHT))
+        s.set_alpha(100)
+        s.fill(BLUE)
+        screen.blit(s, (self.door_i*CELL_WIDTH - x*CELL_WIDTH, self.door_j*CELL_HEIGHT - y*CELL_HEIGHT))
