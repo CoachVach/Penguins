@@ -1,4 +1,3 @@
-
 import pygame
 from App.Constants.Penguins.facing import *
 from App.Constants.Cells.interface import CELL_HEIGHT, CELL_WIDTH
@@ -21,9 +20,21 @@ class Penguin:
 
         self.vel = CELL_WIDTH
 
+        self.food = 100
+        self.water = 100
+
+        self.last_decrease_time = pygame.time.get_ticks()
+        self.decrease_interval = 5000  # 5000 milliseconds = 5 seconds
+
         self.path = None
 
     def draw(self, screen, x, y, counter):
+        current_time = pygame.time.get_ticks()
+        if current_time - self.last_decrease_time >= self.decrease_interval:
+            self.food = max(0, self.food - 1)
+            self.water = max(0, self.water - 1)
+            self.last_decrease_time = current_time
+
         if self.facing == DOWN:
             imgs = self.walking_down_imgs
         elif self.facing == UP:

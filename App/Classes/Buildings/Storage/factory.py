@@ -10,10 +10,10 @@ class StorageFactory(Factory):
     def __init__(self):
         super().__init__(img = STORAGE_IMG, button_img = STORAGE_BUTTON_IMG, width=3, height=3)
 
-    def create(self, j, i, matrix, buildings):
+    def create(self, j, i, matrix, buildings, door_i, door_j):
         for row in range(j, j + self.width):
             for col in range(i, i + self.height):
                 matrix.matrix[row][col] = STORAGE
 
-        buildings.storages.append(Storage(j, i, self.width, self.height, self.img, self.orientation == HORIZONTAL))
+        buildings.storages.append(Storage(j, i, self.width, self.height, self.img, door_j, door_i, self.orientation == HORIZONTAL))
 

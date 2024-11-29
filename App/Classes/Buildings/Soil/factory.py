@@ -6,5 +6,5 @@ class SoilFactory(Factory):
     def __init__(self):
         super().__init__(img = SOIL_BUTTON_IMG,button_img = SOIL_BUTTON_IMG, width=1, height=1)
 
-    def create(self, j, i, matrix, buildings):
+    def create(self, j, i, matrix, buildings, door_i = 0, door_j = 0):
         matrix.matrix[j][i] = SOIL

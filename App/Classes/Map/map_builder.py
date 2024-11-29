@@ -21,5 +21,5 @@ class MapBuilder:
     def activate(self, active):
         self.active = active
 
-    def create(self, j, i, buildings):
-        self.selected.create(j, i, self.matrix, buildings)
+    def create(self, j, i, buildings, door_i, door_j):
+        self.selected.create(j, i, self.matrix, buildings, door_i, door_j)

@@ -10,10 +10,10 @@ class BarrelFactory(Factory):
     def __init__(self):
         super().__init__(img = BARREL_IMG, button_img = BARREL_BUTTON_IMG, width=1, height=1)
 
-    def create(self, j, i, matrix, buildings):
+    def create(self, j, i, matrix, buildings, door_i, door_j):
         for row in range(j, j + self.width):
             for col in range(i, i + self.height):
                 matrix.matrix[row][col] = BARREL
 
-        buildings.barrels.append(Barrel(j, i, self.width, self.height, self.img, self.orientation == HORIZONTAL))
+        buildings.barrels.append(Barrel(j, i, self.width, self.height, self.img, door_j, door_i, self.orientation == HORIZONTAL))
 
