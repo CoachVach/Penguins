@@ -32,10 +32,16 @@ class Map:
 
     def draw(self, mouse_pos, button_clicked, mouse_in_panel):
         if (not self.builder.active and button_clicked and not mouse_in_panel):
-            self.handle_building_selection(mouse_pos)
+            self.selected_building = self.interface.handle_building_selection(mouse_pos)
+
+        self.penguin_commander.handle_penguins()
+
+        self.delete_plants()
+
         self.interface.draw(mouse_pos, button_clicked, self.builder, self.penguin_commander.penguins, mouse_in_panel, self.selected_building)
         
-    def handle_building_selection(self, mouse_pos):
-        self.selected_building = self.interface.handle_building_selection(mouse_pos)
-        if self.selected_building:
-            self.penguin_commander.send_penguin((self.selected_building.door_i, self.selected_building.door_j))
+    def delete_plants(self):
+        for plant in self.buildings.plants:
+            if plant.collected:
+                self.buildings.plants.remove(plant)
+                return

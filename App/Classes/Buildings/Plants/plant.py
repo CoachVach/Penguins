@@ -8,8 +8,8 @@ from App.Constants.colors import *
 from App.Constants.interface import DELAY
 
 class Plant(Building):
-    def __init__(self, j, i, width, height, img, horizontal=True):
-        super().__init__(j, i, width, height, img, horizontal)
+    def __init__(self, j, i, width, height, img, door_j, door_i, horizontal=True):
+        super().__init__(j, i, width, height, img, door_j, door_i, horizontal)
 
         seconds = 10
         self.timer = threading.Timer(seconds, self.set_mature)
@@ -20,6 +20,7 @@ class Plant(Building):
         self.growth_rate = CELL_WIDTH / ((seconds*1000)/DELAY)
 
         self.mature = False
+        self.collected = False
 
     def set_mature(self):
         self.mature = True

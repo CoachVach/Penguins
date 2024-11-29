@@ -25,8 +25,28 @@ class PenguinCommander:
 
         return road_matrix
     
-    def send_penguin(self, end):
+    def handle_penguins(self):
+        penguin = self.free_penguin()
+
+        if penguin:
+            for plant in self.buildings.plants:
+                if plant.mature:
+                    self.send_to_harvest(penguin, plant)
+    
+    def send_penguin(self, penguin, end):
         self.road_matrix = self.create_road_matrix()
         self.path_finder.update_matrix(self.road_matrix)
-        penguin = self.penguins[0]
         penguin.determine_path(self.path_finder.create_path((penguin.i, penguin.j), end))
+
+    def free_penguin(self):
+        for p in self.penguins:
+            if not p.busy:
+                return p
+            
+        return None
+    
+    def send_to_harvest(self, penguin, plant):
+        self.send_penguin(penguin, (plant.door_i, plant.door_j))
+        penguin.harvesting = plant
+
+

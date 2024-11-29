@@ -1,3 +1,4 @@
+import threading
 import pygame
 from App.Constants.Penguins.facing import *
 from App.Constants.Cells.interface import CELL_HEIGHT, CELL_WIDTH
@@ -23,10 +24,15 @@ class Penguin:
         self.food = 100
         self.water = 100
 
+        self.harvesting = None
+        self.harvest_timer = threading.Timer(5, self.collect)
+
         self.last_decrease_time = pygame.time.get_ticks()
         self.decrease_interval = 5000  # 5000 milliseconds = 5 seconds
 
         self.path = None
+
+        self.busy = False
 
     def draw(self, screen, x, y, counter):
         current_time = pygame.time.get_ticks()
@@ -81,6 +87,7 @@ class Penguin:
     def determine_path(self, path):
         self.path = path
         self.determine_direction()
+        self.busy = True
 
     def determine_direction(self):
         if len(self.path) >= 1:
@@ -98,3 +105,18 @@ class Penguin:
 
             if self.path == []:
                 self.facing = STANDING
+                if self.harvesting:
+                    self.harvest()
+                else:
+                    self.busy = False
+
+    #HARVESTING
+    def harvest(self):
+        print("TIMER")
+        self.harvest_timer.start()
+    
+    def collect(self):
+        print("COLLECT")
+        if self.harvesting:
+            self.harvesting.collected = True
+            self.harvesting = None

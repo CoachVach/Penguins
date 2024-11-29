@@ -53,9 +53,10 @@ class MapInterface:
         
         selected_building = builder.selected
         if (not mouse_in_panel) and (mouse_i >= 0 and mouse_i < MAP_WIDTH) and (mouse_j >= 0 and mouse_j < MAP_HEIGHT):
-            if selected_building == None:
+            if not selected_building:
                 self.cell_drawer.draw_selected(mouse_j, mouse_i, self.x, self.y)
             else:
+                
                 can_build, door_i, door_j = selected_building.can_build(mouse_j, mouse_i, self.matrix)
                 if can_build:
                     if button_clicked:
