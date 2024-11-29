@@ -8,10 +8,9 @@ from App.Constants.colors import *
 from App.Constants.interface import DELAY
 
 class Plant(Building):
-    def __init__(self, j, i, width, height, img, door_j, door_i, horizontal=True):
+    def __init__(self, j, i, width, height, img, door_j, door_i, seconds = 10, horizontal=True):
         super().__init__(j, i, width, height, img, door_j, door_i, horizontal)
 
-        seconds = 10
         self.timer = threading.Timer(seconds, self.set_mature)
         self.timer.start()
         

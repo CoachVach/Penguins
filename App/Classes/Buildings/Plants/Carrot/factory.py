@@ -1,7 +1,6 @@
 
 from App.Classes.Buildings.Plants.Carrot.carrot import Carrot
 from App.Classes.Buildings.Plants.factory import PlantFactory
-from App.Constants.Cells.cells import PLANT, SOIL
 from App.Constants.Plants.plants import CARROT_IMG
 from App.Constants.orientation import HORIZONTAL
 from App.Constants.panel import CARROT_BUTTON_IMG

@@ -112,11 +112,9 @@ class Penguin:
 
     #HARVESTING
     def harvest(self):
-        print("TIMER")
         self.harvest_timer.start()
     
     def collect(self):
-        print("COLLECT")
         if self.harvesting:
             self.harvesting.collected = True
             self.harvesting = None

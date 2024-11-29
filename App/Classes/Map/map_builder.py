@@ -5,6 +5,7 @@ from App.Classes.Buildings.Plants.Carrot.factory import CarrotFactory
 from App.Classes.Buildings.Road.factory import RoadFactory
 from App.Classes.Buildings.Soil.factory import SoilFactory
 from App.Classes.Buildings.Storage.factory import StorageFactory
+from App.Classes.Buildings.Plants.Tree.factory import TreeFactory
 
 class MapBuilder:
     def __init__(self, matrix):
@@ -12,7 +13,7 @@ class MapBuilder:
 
         self.buildings = [IglooFactory(), RoadFactory(), BridgeFactory(), BarrelFactory(), StorageFactory()]
 
-        self.plants = [SoilFactory(), CarrotFactory()]
+        self.plants = [SoilFactory(), TreeFactory(), CarrotFactory()]
 
         self.selected = None
 

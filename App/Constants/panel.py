@@ -17,3 +17,4 @@ SOIL_BUTTON_IMG = "Images/Cells/soil.png"
 ROTATE_BUTTON_IMG = "Images/Buttons/Panel/rotate.png"
 
 CARROT_BUTTON_IMG = "Images/Buttons/Panel/Plants/carrot.png"
+TREE_BUTTON_IMG = "Images/Buttons/Panel/Plants/tree.png"
