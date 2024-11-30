@@ -26,19 +26,20 @@ class Map:
         self.penguin_commander = PenguinCommander(buildings = self.buildings, matrix = self.matrix)
 
         self.selected_building = None
+        self.selected_storage = False
 
     def move(self, keys, mouse_pos, button_clicked, button_released):
         self.movement.move(keys, mouse_pos, button_clicked, button_released)
 
     def draw(self, mouse_pos, button_clicked, mouse_in_panel):
-        if (not self.builder.active and button_clicked and not mouse_in_panel):
-            self.selected_building = self.interface.handle_building_selection(mouse_pos)
+        if (not self.builder.active and button_clicked and not mouse_in_panel and not self.interface.mouse_in_info_panel(mouse_pos)):
+            self.selected_building, self.selected_storage = self.interface.handle_building_selection(mouse_pos)
 
         self.penguin_commander.handle_penguins()
 
         self.delete_plants()
 
-        self.interface.draw(mouse_pos, button_clicked, self.builder, self.penguin_commander.penguins, mouse_in_panel, self.selected_building)
+        self.interface.draw(mouse_pos, button_clicked, self.builder, self.penguin_commander.penguins, mouse_in_panel, self.selected_building, self.selected_storage)
         
     def delete_plants(self):
         for plant in self.buildings.plants:

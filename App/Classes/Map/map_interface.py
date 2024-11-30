@@ -22,22 +22,21 @@ class MapInterface:
 
         self.info_panel = InfoPanel(screen)
 
-    def draw(self, mouse_pos, button_clicked, builder, penguins, mouse_in_panel, selected_building):
+    def draw(self, mouse_pos, button_clicked, builder, penguins, mouse_in_panel, selected_building, is_storage):
         self.draw_cells()
 
         self.draw_buildings()
 
-        self.info_panel.set_building(selected_building)
+        self.info_panel.set_building(selected_building, is_storage)
 
         self.draw_when_builder(mouse_pos, button_clicked, mouse_in_panel, builder)
 
         self.draw_penguins(penguins)
 
-        self.info_panel.draw()
+        self.info_panel.draw(mouse_pos, button_clicked)
         if self.info_panel.selected_building:
             self.info_panel.selected_building.draw_door(self.screen, self.x, self.y)
             
-
         self.increment_counter()
 
     def draw_cells(self):
@@ -103,10 +102,9 @@ class MapInterface:
         mouse_j = (mouse_y + self.y*CELL_HEIGHT) // CELL_HEIGHT
         
         selected_building = None
+        is_storage = False
         
-        # Revisar todos los tipos de buildings
         for igloo in self.buildings.iglooes:
-            # Verificar si el click está dentro del área del building
             if (mouse_i >= igloo.i and mouse_i < igloo.i + igloo.width and 
                 mouse_j >= igloo.j and mouse_j < igloo.j + igloo.height):
                 selected_building = igloo
@@ -122,6 +120,7 @@ class MapInterface:
             if (mouse_i >= storage.i and mouse_i < storage.i + storage.width and 
                 mouse_j >= storage.j and mouse_j < storage.j + storage.height):
                 selected_building = storage
+                is_storage = True
                 break
                 
         for plant in self.buildings.plants:
@@ -130,4 +129,7 @@ class MapInterface:
                 selected_building = plant
                 break
         
-        return selected_building
+        return selected_building, is_storage
+    
+    def mouse_in_info_panel(self, mouse_pos):
+        return self.info_panel.rect.collidepoint(mouse_pos)

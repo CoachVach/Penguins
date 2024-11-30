@@ -1,5 +1,4 @@
 from App.Classes.Buildings.Plants.plant import Plant
-from App.Constants.Buildings.buildings import *
 from App.Classes.Material.Wood.wood import Wood
 
 class Tree(Plant):
