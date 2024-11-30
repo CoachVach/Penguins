@@ -27,6 +27,8 @@ class Penguin:
         self.harvesting = None
         self.harvest_timer = threading.Timer(5, self.collect)
 
+        self.material = None
+
         self.last_decrease_time = pygame.time.get_ticks()
         self.decrease_interval = 5000  # 5000 milliseconds = 5 seconds
 
@@ -116,5 +118,5 @@ class Penguin:
     
     def collect(self):
         if self.harvesting:
-            self.harvesting.collected = True
+            self.material = self.harvesting.collect()
             self.harvesting = None

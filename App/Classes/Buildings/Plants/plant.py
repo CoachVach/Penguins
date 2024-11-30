@@ -8,8 +8,10 @@ from App.Constants.colors import *
 from App.Constants.interface import DELAY
 
 class Plant(Building):
-    def __init__(self, j, i, width, height, img, door_j, door_i, seconds = 10, horizontal=True):
+    def __init__(self, j, i, width, height, img, door_j, door_i,material, seconds = 10, horizontal=True):
         super().__init__(j, i, width, height, img, door_j, door_i, horizontal)
+
+        self.material = material
 
         self.timer = threading.Timer(seconds, self.set_mature)
         self.timer.start()
@@ -36,3 +38,9 @@ class Plant(Building):
 
         maturity_rect = (self.i*CELL_WIDTH - x*CELL_WIDTH, (self.j*CELL_HEIGHT - y*CELL_HEIGHT + CELL_HEIGHT - self.maturity_h ), self.maturity_w, self.maturity_h)
         pygame.draw.rect(screen, color, maturity_rect)
+
+    def collect(self):
+        self.collected = True
+
+        return self.material
+
