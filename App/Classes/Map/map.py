@@ -4,6 +4,7 @@ from App.Classes.Map.map_interface import MapInterface
 from App.Classes.Map.map_movement import MapMovement
 from App.Classes.Map.matrix import Matrix
 from App.Classes.Penguins.commander import PenguinCommander
+from App.Constants.Cells.cells import SOIL
 from App.Constants.map import *
 from App.Constants.Cells.interface import CELL_HEIGHT, CELL_WIDTH
 
@@ -45,4 +46,5 @@ class Map:
         for plant in self.buildings.plants:
             if plant.collected:
                 self.buildings.plants.remove(plant)
+                self.matrix.matrix[plant.j][plant.i] = SOIL
                 return

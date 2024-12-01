@@ -33,3 +33,6 @@ class Storage(Building):
             self.material = Iron(0)
         else:
             self.material = Wood(0)
+
+    def full(self):
+        return self.material.cant >= self.capacity

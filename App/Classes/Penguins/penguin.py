@@ -27,6 +27,9 @@ class Penguin:
         self.harvesting = None
         self.harvest_timer = threading.Timer(5, self.collect)
 
+        self.storing = None
+        self.store_timer = threading.Timer(5, self.drop)
+
         self.material = None
 
         self.last_decrease_time = pygame.time.get_ticks()
@@ -109,6 +112,8 @@ class Penguin:
                 self.facing = STANDING
                 if self.harvesting:
                     self.harvest()
+                elif self.storing:
+                    self.store()
                 else:
                     self.busy = False
 
@@ -120,3 +125,16 @@ class Penguin:
         if self.harvesting:
             self.material = self.harvesting.collect()
             self.harvesting = None
+            self.harvest_timer = threading.Timer(5, self.collect)
+
+    #STORING
+    def store(self):
+        self.store_timer.start()
+
+    def drop(self):
+        if self.storing:
+            self.material = self.storing.add_element(self.material)
+            self.storing = None
+            self.store_timer = threading.Timer(5, self.drop)
+            if not self.material:
+                self.busy = False

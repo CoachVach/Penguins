@@ -39,17 +39,13 @@ class InfoPanel:
         if is_click:
             self.handle_click(mouse_pos)
 
-        # Draw the background of the panel
         pygame.draw.rect(self.screen, (200, 173, 127), self.rect)  # Light brown color
         
-        # Draw a thicker border
         pygame.draw.rect(self.screen, BLACK, self.rect, 3)
 
-        # Set up the fonts
         title_font = pygame.font.Font(None, 32)
         font = pygame.font.Font(None, 24)
 
-        # Building title
         building_type = self.selected_building.__class__.__name__
         title = title_font.render(building_type, True, BLACK)
         title_rect = title.get_rect(centerx=self.rect.centerx, top=self.rect.top + 15)

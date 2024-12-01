@@ -26,12 +26,21 @@ class PenguinCommander:
         return road_matrix
     
     def handle_penguins(self):
-        penguin = self.free_penguin()
+        free_penguin = self.free_penguin()
 
-        if penguin:
+        if free_penguin:
             for plant in self.buildings.plants:
                 if plant.mature:
-                    self.send_to_harvest(penguin, plant)
+                    self.send_to_harvest(free_penguin, plant)
+                    break
+        
+        material_penguin = self.penguin_with_material()
+
+        if material_penguin:
+            for storage in self.buildings.storages:
+                if (storage.material.name == material_penguin.material.name) and not storage.full():
+                    self.send_to_store(material_penguin, storage)
+
     
     def send_penguin(self, penguin, end):
         self.road_matrix = self.create_road_matrix()
@@ -45,8 +54,20 @@ class PenguinCommander:
             
         return None
     
+    def penguin_with_material(self):
+        for p in self.penguins:
+
+            if not p.storing and p.material:
+                return p
+            
+        return None
+    
     def send_to_harvest(self, penguin, plant):
         self.send_penguin(penguin, (plant.door_i, plant.door_j))
         penguin.harvesting = plant
+
+    def send_to_store(self, penguin, storage):
+        self.send_penguin(penguin, (storage.door_i, storage.door_j))
+        penguin.storing = storage
 
 
