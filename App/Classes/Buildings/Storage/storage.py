@@ -6,7 +6,7 @@ from App.Classes.Material.Wood.wood import Wood
 
 class Storage(Building):
     def __init__(self, j, i, width, height, img, door_j, door_i, horizontal=True):
-        super().__init__(j, i, width, height, img, door_j, door_i, horizontal)
+        super().__init__(j, i, width, height, img, door_j, door_i, Wood(5), horizontal)
 
         self.material = Wood(0) # default
 
@@ -25,6 +25,16 @@ class Storage(Building):
                 return material
             
         return material
+    
+    def collect(self, capacity):
+        if self.material.cant >= capacity:
+            collected = self.material.copy(capacity)
+            self.material.cant -= capacity
+        else:
+            collected = self.material.copy(self.material.cant)
+            self.material.cant = 0
+        return collected
+
 
     def assign_material(self, material):
         if material == "Food":   
@@ -36,3 +46,9 @@ class Storage(Building):
 
     def full(self):
         return self.material.cant >= self.capacity
+    
+    def empty(self):
+        return self.material.cant == 0
+    
+    def fillable(self):
+        return (not self.full()) and self.constructed()

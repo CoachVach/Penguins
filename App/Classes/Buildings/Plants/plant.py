@@ -2,6 +2,7 @@ import threading
 
 import pygame
 from App.Classes.Buildings.building import Building
+from App.Classes.Material.Wood.wood import Wood
 from App.Constants.Buildings.buildings import *
 from App.Constants.Cells.interface import CELL_HEIGHT, CELL_WIDTH
 from App.Constants.colors import *
@@ -9,7 +10,7 @@ from App.Constants.interface import DELAY
 
 class Plant(Building):
     def __init__(self, j, i, width, height, img, door_j, door_i,material, seconds = 10, horizontal=True):
-        super().__init__(j, i, width, height, img, door_j, door_i, horizontal)
+        super().__init__(j, i, width, height, img, door_j, door_i, None, horizontal)
 
         self.material = material
 
@@ -42,5 +43,9 @@ class Plant(Building):
     def collect(self):
         self.collected = True
 
-        return self.material
+        collected = self.material.copy(self.material.cant)
+
+        self.material = None
+
+        return collected
 

@@ -3,6 +3,7 @@ import pygame
 from App.Constants.Penguins.facing import *
 from App.Constants.Cells.interface import CELL_HEIGHT, CELL_WIDTH
 from App.Constants.Penguins.Images.movement import *
+from App.Constants.Plants.plants import COLLECTION_CAPACITY
 from App.Interface.Images.image_transformer import penguin_imgs
 
 class Penguin:
@@ -29,6 +30,12 @@ class Penguin:
 
         self.storing = None
         self.store_timer = threading.Timer(5, self.drop)
+
+        self.building = None
+        self.build_timer = threading.Timer(7, self.build)
+
+        self.collecting = None
+        self.collect_timer = threading.Timer(7, self.collect_store)
 
         self.material = None
 
@@ -114,6 +121,10 @@ class Penguin:
                     self.harvest()
                 elif self.storing:
                     self.store()
+                elif self.building:
+                    self.construct()
+                elif self.collecting:
+                    self.collect_st()
                 else:
                     self.busy = False
 
@@ -124,8 +135,11 @@ class Penguin:
     def collect(self):
         if self.harvesting:
             self.material = self.harvesting.collect()
+            print(self.material)
             self.harvesting = None
             self.harvest_timer = threading.Timer(5, self.collect)
+            if not self.material:
+                self.busy = False
 
     #STORING
     def store(self):
@@ -136,5 +150,29 @@ class Penguin:
             self.material = self.storing.add_element(self.material)
             self.storing = None
             self.store_timer = threading.Timer(5, self.drop)
+            if not self.material:
+                self.busy = False
+
+    #BUILDING
+    def construct(self):
+        self.build_timer.start()
+
+    def build(self):
+        if self.building:
+            self.material = self.building.construct(self.material)
+            self.building = None
+            self.build_timer = threading.Timer(5, self.build)
+            if not self.material:
+                self.busy = False
+
+    #COLLECTING
+    def collect_st(self):
+        self.collect_timer.start()
+
+    def collect_store(self):
+        if self.collecting:
+            self.material = self.collecting.collect(COLLECTION_CAPACITY)
+            self.collecting = None
+            self.collect_timer = threading.Timer(5, self.collect_store)
             if not self.material:
                 self.busy = False
